@@ -1,0 +1,55 @@
+---
+- name: Provisionamento Reutilizavel de Contas de Servico, PAM e Permissoes Root
+  hosts: all_servers
+  vars_files:
+    - vars/users-data.yml
+
+  tasks:
+    - name: 1. Garantir que o pacote sudo esta instalado de forma agnostica
+      ansible.builtin.package:
+        name: sudo
+        state: present
+      ignore_errors: true
+
+    - name: 2. Garantir que o arquivo /etc/sudoers existe (especialmente para o openSUSE)
+      ansible.builtin.file:
+        path: /etc/sudoers
+        state: touch
+        mode: '0440'
+      changed_when: false
+
+    - name: 3. Garantir que os grupos de funcao corporativa existem no sistema
+      ansible.builtin.group:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ system_groups }}"
+
+    - name: 4. Criar as contas por funcao com validacao e hash de senha seguro
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        group: "{{ item.group }}"
+        comment: "{{ item.comment }}"
+        shell: /bin/bash
+        password: "{{ system_users_password_hash }}"
+        update_password: on_create
+        create_home: true
+        state: present
+      loop: "{{ system_accounts }}"
+
+    - name: 5. Inserir nota de rastreabilidade e liberacao de sudo para os grupos e root no sudoers
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^# --- ANSIBLE PAM & COFRE SECRETS ---'
+        insertafter: EOF
+        line: |
+          # --- ANSIBLE PAM & COFRE SECRETS ---
+          # Nota: Modificacao automatizada via Ansible
+          # Concede privilegios administrativos root para os grupos corporativos e sistemas
+          root ALL=(ALL) ALL
+          %linux_adm ALL=(ALL) ALL
+          %mdw_adm   ALL=(ALL) ALL
+          %infra_adm ALL=(ALL) ALL
+          %dba_adm   ALL=(ALL) ALL
+        validate: 'visudo -cf %s'
+

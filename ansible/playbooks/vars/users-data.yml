@@ -1,0 +1,35 @@
+---
+# Credenciais e Dados de Contas de Serviço / PAM
+system_users_password_hash: "$6mUfefYwBDuI"
+
+system_accounts:
+  - name: "linux_adm_01"
+    group: "linux_adm"
+    comment: "Conta de servico e PAM 01 para Administracao Linux"
+  - name: "linux_adm_02"
+    group: "linux_adm"
+    comment: "Conta de servico e PAM 02 para Administracao Linux"
+  - name: "mdw_adm_01"
+    group: "mdw_adm"
+    comment: "Conta de servico e PAM 01 para Middleware"
+  - name: "mdw_adm_02"
+    group: "mdw_adm"
+    comment: "Conta de servico e PAM 02 para Middleware"
+  - name: "infra_adm_01"
+    group: "infra_adm"
+    comment: "Conta de servico e PAM 01 para Infraestrutura e Cloud"
+  - name: "infra_adm_02"
+    group: "infra_adm"
+    comment: "Conta de servico e PAM 02 para Infraestrutura e Cloud"
+  - name: "dba_adm_01"
+    group: "dba_adm"
+    comment: "Conta de servico e PAM 01 para Bancos de Dados"
+  - name: "dba_adm_02"
+    group: "dba_adm"
+    comment: "Conta de servico e PAM 02 para Bancos de Dados"
+
+system_groups:
+  - linux_adm
+  - mdw_adm
+  - infra_adm
+  - dba_adm
