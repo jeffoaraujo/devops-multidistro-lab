@@ -1,0 +1,13 @@
+[debian_group]
+ubuntu-srv ansible_connection=docker ansible_user=root
+
+[redhat_group]
+rocky-srv  ansible_connection=docker ansible_user=root
+
+[suse_group]
+suse-srv   ansible_connection=docker ansible_user=root
+
+[all_servers:children]
+debian_group
+redhat_group
+suse_group

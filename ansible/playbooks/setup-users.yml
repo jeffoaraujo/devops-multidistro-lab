@@ -1,0 +1,16 @@
+---
+- name: Configuracao de Usuarios e Acessos
+  hosts: all_servers
+  tasks:
+    - name: Garantir que o grupo devops existe
+      ansible.builtin.group:
+        name: devops
+        state: present
+
+    - name: Criar o usuario de automacao padrao
+      ansible.builtin.user:
+        name: sysadmin
+        group: devops
+        shell: /bin/bash
+        create_home: true
+        state: present

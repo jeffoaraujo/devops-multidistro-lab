@@ -1,0 +1,8 @@
+---
+- name: Smoke Test Multidistribuicao
+  hosts: all_servers
+  tasks:
+    - name: Garantir que ferramentas de rede essenciais estao presentes
+      ansible.builtin.package:
+        name: "{{ 'curl-minimal' if ansible_os_family == 'RedHat' else 'curl' }}"
+        state: present

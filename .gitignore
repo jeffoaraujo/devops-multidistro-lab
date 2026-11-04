@@ -1,0 +1,8 @@
+# Logs e arquivos temporários do Ansible/Terraform
+*.retry
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+.DS_Store
+.vagrant/

@@ -1,0 +1,1 @@
+Laboratorio Terraform configurado com sucesso no Mac Apple Silicon!
