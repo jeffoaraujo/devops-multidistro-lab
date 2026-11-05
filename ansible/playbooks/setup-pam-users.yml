@@ -31,7 +31,7 @@
         comment: "{{ item.comment }}"
         shell: /bin/bash
         password: "{{ system_users_password_hash }}"
-        update_password: always
+        update_password: on_create
         create_home: true
         state: present
       loop: "{{ system_accounts }}"
