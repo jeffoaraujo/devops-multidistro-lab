@@ -25,16 +25,20 @@ Demonstrar competência avançada na criação de automações agnósticas, segu
 
 ---
 
-## 📁 Estrutura do Repositório
+## 📂 Estrutura do Repositório
 
-```text
 devops/
-├── ansible/
+├── ansible.cfg                    # Configurações globais do Ansible
+├── docker-compose.yml             # Orquestração dos containers (Ubuntu, Rocky, openSUSE)
+├── README.md                      # Documentação técnica do projeto
+├── ansible/                       # Automação de Configuração (Ansible)
+│   ├── ansible.cfg                # Configurações locais do Ansible
 │   ├── inventory/
-│   │   └── hosts               # Mapeamento dos containers multi-distro
+│       └── hosts                  # Inventário multi-distribuição
 │   └── playbooks/
-│       ├── setup-pam-users.yml # Playbook principal e idempotente
-│       └── vars/
-│           └── users-data.yml  # Cofre de variáveis e hash SHA-512
-└── terraform/
-    └── *.tf                    # Configurações declarativas de infraestrutura
+│       ├── setup-pam-users.yml    # Playbook idempotente (PAM e sudoers seguro)
+│       └── vars/                  # Cofre de variáveis e hash SHA-512
+└── terraform/                     # Infraestrutura como Código (Terraform)
+    ├── main.tf                    # Recursos declarativos
+    ├── variables.tf               # Variáveis de entrada
+    └── outputs.tf                 # Saídas da infraestrutura
