@@ -31,25 +31,20 @@
         comment: "{{ item.comment }}"
         shell: /bin/bash
         password: "{{ system_users_password_hash }}"
-        update_password: on_create
+        update_password: always
         create_home: true
         state: present
       loop: "{{ system_accounts }}"
 
-    - name: 5. Inserir nota de rastreabilidade e liberacao de sudo para os grupos e root no sudoers
-      ansible.builtin.lineinfile:
+    - name: 5. Inserir regras no sudoers com bloco gerenciado e validacao via visudo
+      ansible.builtin.blockinfile:
         path: /etc/sudoers
-        state: present
-        regexp: '^# --- ANSIBLE PAM & COFRE SECRETS ---'
-        insertafter: EOF
-        line: |
-          # --- ANSIBLE PAM & COFRE SECRETS ---
-          # Nota: Modificacao automatizada via Ansible
-          # Concede privilegios administrativos root para os grupos corporativos e sistemas
+        marker: "# {mark} ANSIBLE MANAGED BLOCK - PAM & COFRE SECRETS"
+        backup: true
+        block: |
           root ALL=(ALL) ALL
           %linux_adm ALL=(ALL) ALL
           %mdw_adm   ALL=(ALL) ALL
           %infra_adm ALL=(ALL) ALL
           %dba_adm   ALL=(ALL) ALL
         validate: 'visudo -cf %s'
-

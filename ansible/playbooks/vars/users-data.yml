@@ -1,6 +1,6 @@
 ---
 # Credenciais e Dados de Contas de Serviço / PAM
-system_users_password_hash: "$6mUfefYwBDuI"
+system_users_password_hash: "$6$S5zQ7fSeoIsxwZRd$w8VyOMl8641K2FliuGar8WLDmF1aVYf3kwk8mbJEqH0SI2kKu0X491XSFVrTGjeN4rXFQUUObi.E7zkWXKfJC0"
 
 system_accounts:
   - name: "linux_adm_01"

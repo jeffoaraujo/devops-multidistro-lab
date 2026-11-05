@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  ubuntu-srv:
+    image: ubuntu:22.04
+    container_name: ubuntu-srv
+    command: /bin/sleep infinity
+    networks:
+      - lab-net
+
+  rocky-srv:
+    image: rockylinux:9
+    container_name: rocky-srv
+    command: /bin/sleep infinity
+    networks:
+      - lab-net
+
+  suse-srv:
+    image: opensuse/leap:latest
+    container_name: suse-srv
+    command: /bin/sleep infinity
+    networks:
+      - lab-net
+
+networks:
+  lab-net:
+    driver: bridge
+
