@@ -25,8 +25,9 @@ Demonstrar competência avançada na criação de automações agnósticas, segu
 
 ---
 
-## 📂 Estrutura do Repositório
+## 📁 Estrutura do Repositório
 
+```text
 devops/
 ├── ansible.cfg                    # Configurações globais do Ansible
 ├── docker-compose.yml             # Orquestração dos containers (Ubuntu, Rocky, openSUSE)
@@ -42,3 +43,4 @@ devops/
     ├── main.tf                    # Recursos declarativos
     ├── variables.tf               # Variáveis de entrada
     └── outputs.tf                 # Saídas da infraestrutura
+
