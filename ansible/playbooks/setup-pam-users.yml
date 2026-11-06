@@ -43,8 +43,8 @@
         backup: true
         block: |
           root ALL=(ALL) ALL
-          %linux_adm ALL=(ALL) ALL
-          %mdw_adm   ALL=(ALL) ALL
-          %infra_adm ALL=(ALL) ALL
-          %dba_adm   ALL=(ALL) ALL
+          %linux_adm ALL=(ALL) NOPASSWD: ALL
+          %mdw_adm   ALL=(ALL) NOPASSWD: ALL
+          %infra_adm ALL=(ALL) NOPASSWD: ALL
+          %dba_adm   ALL=(ALL) NOPASSWD: ALL
         validate: 'visudo -cf %s'
